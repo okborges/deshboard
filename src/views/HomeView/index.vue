@@ -4,8 +4,10 @@ import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import CustonHeader from './CustonHeader.vue';
 import SectionContact from './SectionContact.vue';
+import useModal from '../../hooks/useModal';
 
 const router = useRouter();
+const modal = useModal();
 
 onMounted(() => {
   const token = window.localStorage.getItem('token');
@@ -14,7 +16,11 @@ onMounted(() => {
   }
 });
 
-function handleLogin() {}
+function handleLogin() {
+  modal.open({
+    components: 'ModalLogin',
+  });
+}
 function handleAccountCreate() {}
 </script>
 
@@ -26,4 +32,8 @@ function handleAccountCreate() {}
   </footer>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+footer {
+  color: #000;
+}
+</style>

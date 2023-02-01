@@ -1,7 +1,12 @@
-<script setup>
-import { RouterView } from 'vue-router';
-</script>
-
 <template>
-  <RouterView />
+  <modal-factory />
+  <router-view />
 </template>
+
+<script>
+import ModalFactory from './components/ModalFactory';
+
+export default {
+  components: { ModalFactory },
+};
+</script>
