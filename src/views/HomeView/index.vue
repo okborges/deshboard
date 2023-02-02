@@ -23,7 +23,7 @@ export default {
     }
     function handleAccountCreate() {
       modal.open({
-        component: 'ModalAccountCreate',
+        component: 'ModalCreateAccount',
       });
     }
     return {
