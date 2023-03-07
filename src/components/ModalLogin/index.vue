@@ -74,6 +74,7 @@ import {
   validateEmptyAndEmail,
 } from '../../utils/validators';
 import useModal from '../../hooks/useModal';
+import services from '../../services/index';
 
 export default {
   setup() {
@@ -100,7 +101,22 @@ export default {
       },
     });
 
-    function handleSubmit() {}
+    async function handleSubmit() {
+      try {
+        state.isLoading = true;
+        const { data, errors } = await services.auth.login({
+          email: state.email.value,
+          password: state.password.value,
+        });
+
+        if (!errors) {
+          window.localStorage.setItem('token', data.token);
+        }
+      } catch (error) {
+        state.isLoading = false;
+        state.hasErrors = !!error;
+      }
+    }
 
     return {
       state,
